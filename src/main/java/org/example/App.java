@@ -1,12 +1,21 @@
 package org.example;
 
+import com.sun.net.httpserver.HttpHandler;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
 public class App
 {
     public static void main( String[] args )
     {
-        MyServer myServer = new MyServer();
-        MyHandler myHandler = new MyHandler();
+        Executor executor = Executors.newFixedThreadPool(10);
 
-        myServer.start(myHandler);
+        HttpHandler handler = new PingHandler();
+
+        ServerConfig config = new ServerConfig("/ping", handler, executor);
+
+        SimpleHttpServer server = new SimpleHttpServer();
+        server.launchServerWithConfig(config);
     }
 }
