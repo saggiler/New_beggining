@@ -13,7 +13,7 @@ public class App
 
         HttpHandler handler = new PingHandler();
 
-        ServerConfig config = new ServerConfig("/ping", handler, executor);
+        ServerConfig config = new ServerConfig("/ping", handler, executor, 8081);
 
         SimpleHttpServer server = new SimpleHttpServer();
         server.launchServerWithConfig(config);

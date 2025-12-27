@@ -9,7 +9,7 @@ public class SimpleHttpServer {
 
     public void launchServerWithConfig(ServerConfig config) {
         try {
-            HttpServer server = createServer();
+            HttpServer server = createServer(config);
             registerHandlerPath(server, config);
             startServer(server, config);
         } catch (IOException e) {
@@ -17,8 +17,8 @@ public class SimpleHttpServer {
         }
     }
 
-    private HttpServer createServer() throws IOException {
-        return HttpServer.create(new InetSocketAddress(8081), 0);
+    private HttpServer createServer(ServerConfig config) throws IOException {
+        return HttpServer.create(new InetSocketAddress(config.getPort()), 0);
     }
 
     private void registerHandlerPath(HttpServer server, ServerConfig config) {
