@@ -3,13 +3,14 @@ package org.example;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
+import java.util.concurrent.ForkJoinPool;
+
 
 public class App
 {
     public static void main( String[] args )
     {
-        Executor executor = Executors.newFixedThreadPool(10);
+        Executor executor = ForkJoinPool.commonPool();
 
         HttpHandler handler = new PingHandler();
 
