@@ -22,7 +22,9 @@ public class SimpleHttpServer {
     }
 
     private void registerHandlerPath(HttpServer server, ServerConfig config) {
-        server.createContext(config.getPath(), config.getHandler());
+        for (Route route : config.getRoutes()) {
+            server.createContext(route.getPath(), route.getHandler());
+        }
     }
 
     private void startServer(HttpServer server, ServerConfig config) {
