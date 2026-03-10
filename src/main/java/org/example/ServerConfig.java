@@ -1,35 +1,28 @@
 package org.example;
 
-import com.sun.net.httpserver.HttpHandler;
-
+import java.util.List;
 import java.util.concurrent.Executor;
 
 public class ServerConfig {
-    private final String path;
     private final int port;
-    private final HttpHandler handler;
     private final Executor executor;
+    private final List<Route> routes;
 
-    public ServerConfig(String path, HttpHandler handler, Executor executor, int port) {
-        this.path = path;
-        this.handler = handler;
+    public ServerConfig(int port, Executor executor, List<Route> routes) {
         this.executor = executor;
         this.port = port;
+        this.routes = routes;
     }
 
-    public String getPath() {
-        return path;
-    }
-
-    public HttpHandler getHandler() {
-        return handler;
+    public int getPort() {
+        return port;
     }
 
     public Executor getExecutor() {
         return executor;
     }
 
-    public int getPort() {
-        return port;
+    public List<Route> getRoutes() {
+        return routes;
     }
 }
